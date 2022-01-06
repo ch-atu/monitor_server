@@ -127,6 +127,17 @@ class Menu(APIView):
                         },
                         'component': 'assets/linux-list'
                     },
+                    # windows主机
+                    {
+                        'path': 'windows-list',
+                        'name': 'windows-list',
+                        'meta': {
+                            'icon': 'ios-menu',
+                            'title': 'windows主机',
+                            # 'access': ['assets.view_windowslist']
+                        },
+                        'component': 'assets/windows-list'
+                    },
                 ]
             },
             # 实例列表
@@ -171,7 +182,18 @@ class Menu(APIView):
                             'access': ['linux.view_linuxstat'],
                         },
                         'component': 'linux/stat-list'
-                    }
+                    },
+                    # Windows列表
+                    {
+                        'path': 'windows',
+                        'name': 'windows',
+                        'meta': {
+                            'icon': 'ios-menu',
+                            'title': 'Windows列表',
+                            # 'access': ['linux.view_windowsstat'],
+                        },
+                        'component': 'windows/stat-list'
+                    },
                 ],
 
             },
@@ -277,6 +299,30 @@ class Menu(APIView):
                         },
                         'component': 'linux/memory'
                     }
+                ]
+            },
+            # Windows主机监控
+            {
+                "path": '/windows',
+                "name": 'Windows',
+                "meta": {
+                    'hideInMenu': 'true',
+                    "icon": 'ios-apps',
+                    "title": 'Windows主机监控'
+                },
+                "component": 'Main',
+                "children": [
+                    # Windows概览
+                    {
+                        'path': ':tags/view',
+                        'name': 'windows-view',
+                        'meta': {
+                            'hideInMenu': 'true',
+                            'title': 'windows概览',
+                            'access': ['windows.view_linuxstat'],
+                        },
+                        'component': 'windows/view'
+                    },
                 ]
             },
             # MySQL数据库监控
