@@ -1,0 +1,11 @@
+[推荐]
+运行celery-worker：
+    celery -A monitor_server worker -l info -P eventlet --logfile=logs/celery-worker.log
+运行celery-beat：
+    celery -A monitor_server beat -l info > logs/celery-beat.log  2>&1  &
+在Linux下可以不用加-P eventlet
+
+[不推荐]
+celery -A monitor_server worker --app=monitor_server -l info -P eventlet
+celery -A monitor_server beat --app=monitor_server -l info
+
