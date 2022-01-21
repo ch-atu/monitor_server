@@ -1,0 +1,51 @@
+1.获取主机名
+hostname
+
+2.获取ip地址
+for /f "tokens=2 delims=[]" %a in ('ping -n 1 -4 "%computername%"') do @echo %a
+
+3.windows版本
+ver
+
+4.启动时间
+wmic path Win32_OperatingSystem get LastBootUpTime
+
+5.cpu型号
+wmic cpu get Name
+
+6.cpu核心数
+wmic cpu get NumberOfCores
+
+7.cpu线程数
+wmic cpu get NumberOfLogicalProcessors
+
+8.cpu的主频(MHZ)
+wmic cpu get MaxClockSpeed
+
+9.所有cpu信息
+wmic cpu list full
+
+10.获取os名
+wmic os get Caption
+
+11.获取总物理内存（B）
+wmic ComputerSystem get TotalPhysicalMemory
+
+12.获取可用物理内存（KB）
+wmic OS get FreePhysicalMemory
+
+13.获取当前cpu负载
+wmic cpu get loadpercentage
+
+
+
+
+
+
+
+
+
+
+
+
+
