@@ -7,12 +7,34 @@ class MysqlListSerializer(serializers.ModelSerializer):
         model = MysqlList
         fields = '__all__'
 
+
 class LinuxListSerializer(serializers.ModelSerializer):
     class Meta:
         model = LinuxList
         fields = '__all__'
 
+
 class RedisListSerializer(serializers.ModelSerializer):
     class Meta:
         model = RedisList
         fields = '__all__'
+
+
+class WindowsListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WindowsList
+        fields = '__all__'
+
+
+
+
+
+
+
+
+
+
+
+
+
+

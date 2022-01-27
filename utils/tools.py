@@ -76,6 +76,7 @@ def clear_table(tags, table_name):
 
 def archive_table(tags, table_name):
     sql = "insert into {}_his select * from {} where tags='{}' ".format(table_name, table_name, tags)
+    print(sql)
     mysql_exec(sql)
 
 

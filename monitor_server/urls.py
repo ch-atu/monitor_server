@@ -29,5 +29,6 @@ urlpatterns = [
     path('mysql/', include('mysql.urls', namespace='mysql')),
     path('rds/', include('rds.urls', namespace='rds')),
     path('linux/', include('linux.urls', namespace='linux')),
+    path('windows/', include('windows.urls', namespace='windows')),
 
 ]

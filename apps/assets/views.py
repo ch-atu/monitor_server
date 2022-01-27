@@ -75,4 +75,29 @@ class ApiRedisDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.DjangoModelPermissions,)
 
 
+class ApiWindowsList(generics.ListCreateAPIView):
+    def get_queryset(self):
+        host = self.request.query_params.get('host', None)
+        if not host:
+            return WindowsList.objects.all().order_by('id')
+        hosts = WindowsList.objects.filter(host__contains=host).order_by('id')
+        return hosts
+    serializer_class = WindowsListSerializer
+    permission_classes = (permissions.DjangoModelPermissions, )
+
+
+class ApiWindowsDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = WindowsList.objects.get_queryset().order_by('id')
+    serializer_class = WindowsListSerializer
+    permission_classes = (permissions.DjangoModelPermissions,)
+
+
+
+
+
+
+
+
+
+
 

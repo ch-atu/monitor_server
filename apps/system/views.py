@@ -190,7 +190,7 @@ class Menu(APIView):
                         'meta': {
                             'icon': 'ios-menu',
                             'title': 'Windows列表',
-                            # 'access': ['linux.view_windowsstat'],
+                            'access': ['windows.view_windowsstat'],
                         },
                         'component': 'windows/stat-list'
                     },
@@ -319,7 +319,7 @@ class Menu(APIView):
                         'meta': {
                             'hideInMenu': 'true',
                             'title': 'windows概览',
-                            'access': ['windows.view_linuxstat'],
+                            'access': ['windows.view_windowsstat'],
                         },
                         'component': 'windows/view'
                     },

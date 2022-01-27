@@ -185,11 +185,11 @@ class WindowsList(models.Model):
     tags = models.CharField("标签", max_length=32, unique=True)
     host = models.CharField("主机ip", max_length=32)
     hostname = models.CharField("主机名", max_length=256)
-    linux_version = models.CharField("windows", max_length=32, choices=WINDOWS_VERSION)
-    linux_kernel = models.CharField("内核版本", max_length=64, blank=True, null=True)
+    windows_version = models.CharField("windows", max_length=32, choices=WINDOWS_VERSION)
+    windows_kernel = models.CharField("内核版本", max_length=64, blank=True, null=True)
     user = models.CharField("主机用户名", max_length=32)
     password = models.CharField("主机用户密码", max_length=255)
-    sshport = models.IntegerField("主机ssh端口号", default=22)
+    winrm_port = models.IntegerField("主机winrm端口号", default=22)
     serialno = models.CharField("序列号", max_length=100, blank=True, null=True)
     status = models.IntegerField("状态", choices=STATUS, blank=True, null=True)
     cabinet = models.CharField("机柜", max_length=100, blank=True, null=True)
@@ -204,7 +204,6 @@ class WindowsList(models.Model):
     alarm_connect = models.IntegerField("通断告警", default=1)
     alarm_cpu = models.IntegerField("CPU使用率告警", default=1)
     alarm_mem = models.IntegerField("内存使用率告警", default=1)
-    alert_log = models.CharField("后台日志路径", max_length=256, blank=True, null=True)
 
     def __str__(self):
         return self.tags

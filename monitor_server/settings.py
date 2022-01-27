@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'linux.apps.LinuxConfig',
     'mysql.apps.MysqlConfig',
     'rds.apps.RdsConfig',
-    'django_filters'
+    'windows.apps.WindowsConfig',
+    'django_filters',
 ]
 
 GRAPHENE = {
