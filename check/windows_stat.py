@@ -17,7 +17,8 @@ COMMAND = {
     'physical_mem_free': 'wmic OS get FreePhysicalMemory',
     'virtual_mem_total': 'wmic os get SizeStoredInPagingFiles',
     'virtual_mem_free': 'wmic os get FreeSpaceInPagingFiles',
-    'manufacturer': 'wmic bios get Manufacturer'
+    'manufacturer': 'wmic bios get Manufacturer',
+    'disk_info': 'wmic volume get Caption, Capacity, freespace'
 }
 
 
@@ -30,6 +31,7 @@ class WindowsStat:
         连接winrm
         """
         print(f'开始获取：{windows_tag}的相关信息')
+        # 创建winrm连接对象
         session = winrm.Session('http://' + windows_params['host'] + ':' + str(windows_params['port']) + '/wsman',
                                 auth=(windows_params['username'], windows_params['password']))
         return session
@@ -40,23 +42,28 @@ class WindowsStat:
         """
         try:
             session = self.connection(windows_tag, windows_params)
+            # 测试服务器连接是否正常
+            self.run_cmd(session, ' ')
         except Exception as e:
-            print('服务器连接超时！')
-            return None
+            print(e)
+            print('windows服务器连接超时！')
+            return None, None
         host_info = self.get_host_info(session)
         # print(host_info)
         cpu_info = self.get_cpu_info(session)
         # print(cpu_info)
         mem_info = self.get_mem_info(session)
         # print(mem_info)
+        disk_info = self.get_disk_info(session)
 
-        return {**host_info, **cpu_info, **mem_info}
+        return {**host_info, **cpu_info, **mem_info}, disk_info
 
     def run_cmd(self, session, command):
         """
         在此执行命令
         """
         data = session.run_cmd(command).std_out
+        # print(data)
         return data
 
     def get_host_info(self, session):
@@ -115,6 +122,23 @@ class WindowsStat:
             'virtual_mem_total': round(float(virtual_mem_total) / 1024, 2),
             'virtual_mem_free': round(float(virtual_mem_free) / 1024, 2),
         }
+
+    def get_disk_info(self, session):
+        disk_info = self.run_cmd(session, COMMAND['disk_info']).decode('gbk').split()
+
+        for k, v in enumerate(disk_info):
+            if v.startswith(r'\\'):
+                # print(k, v)
+                disk_info = disk_info[0:k - 1]
+                break
+        disk_dict = {}
+        for i in range(1, len(disk_info) // 3):
+            # disk_dict[data[4]] =
+            disk_dict[disk_info[1 + 3 * i]] = {
+                'Capacity': disk_info[3 * i],
+                'FreeSpace': disk_info[1 + 3 * i + 1]
+            }
+        return disk_dict
 
 
 

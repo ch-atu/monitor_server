@@ -86,6 +86,7 @@ def check_linux(tags, linux_params):
             values(%s,%s,%s,%s,%s,%s,%s,%s,%s)'''
             values = (tags, host, dev, round(float(total_size)/1024/1024, 2), round(float(used_size)/1024/1024, 2),
                       round(float(free_size)/1024/1024, 2), used_percent, mount_point, now())
+            # print(values)
             mysql_exec(insert_data_sql, values)
         archive_table(tags,'linux_disk')
 
@@ -122,8 +123,6 @@ def check_linux(tags, linux_params):
 
 if __name__ == '__main__':
     print(datetime.now())
-    test = "测试数据：'{str}', {num}"
-    result_format = test.format(str='hello!!', num='123')
     tags = '腾讯云'
     linux_params = {
         'hostname': '119.29.139.149',

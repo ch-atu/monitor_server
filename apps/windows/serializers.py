@@ -12,3 +12,22 @@ class WindowsStatHisSerializer(serializers.ModelSerializer):
     class Meta:
         model = WindowsStatHis
         fields = '__all__'
+
+
+class WindowsDiskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WindowsDisk
+        fields = '__all__'
+
+
+
+
+
+
+
+
+
+
+
+
+

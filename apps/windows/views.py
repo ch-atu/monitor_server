@@ -42,6 +42,16 @@ class ApiWindowsStatHis(generics.ListCreateAPIView):
     permission_classes = (permissions.DjangoModelPermissions,)
 
 
+class ApiWindowsDisk(generics.ListCreateAPIView):
+    def get_queryset(self):
+        tags = self.request.query_params.get('tags', None)
+        return WindowsDisk.objects.filter(tags=tags).order_by('-used_percent')
+
+    serializer_class = WindowsDiskSerializer
+    filter_backends = (DjangoFilterBackend,)
+    permission_classes = (permissions.DjangoModelPermissions,)
+
+
 # all instance
 class ApiWindowsStatList(generics.ListCreateAPIView):
     # queryset = LinuxStat.objects.get_queryset().order_by('-status')
@@ -67,7 +77,7 @@ from .models import WindowsStat
 
 @api_view(['DELETE'])
 # @permission_classes([IsAuthenticated])
-def del_windows_stat(request,host):
+def del_windows_stat(request, host):
     windows_stat = WindowsStat.objects.filter(host=host)
     windows_stat.delete()
     return Response({

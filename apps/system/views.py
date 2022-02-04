@@ -2,7 +2,6 @@
 import json
 import logging
 from datetime import timedelta
-
 # pro
 from system.models import Users
 from system.models import AlertLog, AlarmConf, AlarmInfo

@@ -4,6 +4,7 @@ import time
 from check.check_linux import check_linux
 from check.check_mysql import check_mysql
 from check.check_redis import check_redis
+from check.check_windows import check_windows
 from check.alarm import check_alarm
 from utils.tools import clear_table, archive_table, mysql_query
 from multiprocessing import Process
@@ -11,18 +12,46 @@ from multiprocessing import Process
 
 def checkall():
     # all minitoring servers
-    linux_list = mysql_query('select tags,host,sshport,user,password from linux_list')
+    linux_list = mysql_query(
+        '''
+        select tags,host,sshport,user,password from linux_list
+        ''')
 
     mysql_list = mysql_query(
-        'select t1.tags,t1.host,t1.port,t1.db_user,t1.db_password,t2.user,t2.password,t2.sshport,t1.db_version'
-        ' from mysql_list t1 left join linux_list t2 on t1.linux_tags=t2.tags')
+        '''
+        select t1.tags,t1.host,t1.port,t1.db_user,t1.db_password,t2.user,t2.password,t2.sshport,t1.db_version
+        from mysql_list t1 
+        left join linux_list t2 on t1.linux_tags=t2.tags
+        ''')
 
     redis_list = mysql_query(
-        'select t1.tags,t1.host,t1.port,t1.redis_version,t1.password,t2.user,t2.password,t2.sshport'
-        ' from redis_list t1 left join linux_list t2 on t1.linux_tags=t2.tags')
+        '''
+        select t1.tags,t1.host,t1.port,t1.redis_version,t1.password,t2.user,t2.password,t2.sshport
+        from redis_list t1 
+        left join linux_list t2 on t1.linux_tags=t2.tags
+        ''')
+
+    windows_list = mysql_query(
+        '''
+        select tags,host,winrm_port,user,password from windows_list
+        '''
+    )
 
     # check_linux
     check_pool = []
+
+    if windows_list:
+        for each in windows_list:
+            tags = each[0]
+            windows_params = {
+                'host': each[1],
+                'port': each[2],
+                'username': each[3],
+                'password': each[4]
+            }
+            windows_check = Process(target=check_windows, args=(tags, windows_params))
+            windows_check.start()
+            check_pool.append(windows_check)
 
     if linux_list:
         for each in linux_list:
@@ -73,9 +102,9 @@ def checkall():
         each.join()
 
     # 告警
-    check_alarm()
+    # check_alarm()
 
 
-# if __name__=='__main__':
-#     checkall()
+if __name__ == '__main__':
+    checkall()
 
