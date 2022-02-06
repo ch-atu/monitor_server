@@ -89,6 +89,7 @@ def check_windows(windows_tag, windows_params):
             mysql_exec(insert_sql)
         # 2.2将windows_disk备份到windows_disk_his表中
         archive_table(windows_tag, 'windows_disk')
+        print('check_windows执行结束！')
     else:
         # 连接错误相关逻辑
         print('windows服务器连接失败！')

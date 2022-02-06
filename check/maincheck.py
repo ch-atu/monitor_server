@@ -102,9 +102,9 @@ def checkall():
         each.join()
 
     # 告警
-    # check_alarm()
+    check_alarm()
 
 
-if __name__ == '__main__':
-    checkall()
+# if __name__ == '__main__':
+#     checkall()
 

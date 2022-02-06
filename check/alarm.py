@@ -72,5 +72,5 @@ def check_alarm():
                     send_ding_msg(alarm_content)
 
 
-if __name__ == '__main__':
-    check_alarm()
+# if __name__ == '__main__':
+#     check_alarm()
