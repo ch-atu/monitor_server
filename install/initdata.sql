@@ -23,11 +23,11 @@ INSERT INTO `alarm_conf` VALUES (26, 5, 'Windows主机通断告警', '>=', 2, '�
 INSERT INTO `alarm_conf` VALUES (27, 5, 'Windows主机CPU使用率告警', '>=', 90, '使用百分比', 'windows_stat', 'select tags,\n       host url,\n       concat(\'【\',tags,\'】\',\n              \':Windows主机CPU使用率告警\',\n              \'\\n 告警时间：\',\n              current_timestamp(),\n              \' \\n 主机IP: \',\n              host,\n              \'\\n CPU使用率：\',\n              cpu_used_rate,\n              \'%%\') content\n  from windows_stat\n where cpu_used_rate >= %s\n  and %s', 'windows_list', 'alarm_cpu');
 INSERT INTO `alarm_conf` VALUES (28, 5, 'Windows主机内存使用率告警', '>=', 90, '使用百分比', 'windows_stat', 'select tags,\n       host url,  \n       concat(\'【\',tags,\'】\',\n              \':Windows主机内存使用率告警\',\n              \'\\n 告警时间：\',\n              current_timestamp(),\n              \' \\n 主机IP: \',\n              host,\n              \'\\n 内存使用率：\',\n              physical_mem_used_rate,\n              \'%%\'\n             ) content\n  from windows_stat\n where physical_mem_used_rate >= %s\n  and %s', 'windows_list', 'alarm_mem');
 
---INSERT INTO `django_celery_beat_intervalschedule` VALUES ('1', '1', 'minutes');
---
---INSERT INTO `django_celery_beat_intervalschedule` VALUES ('2', '10', 'minutes');
---
---INSERT INTO `django_celery_beat_intervalschedule` VALUES ('3', '30', 'minutes');
---
---INSERT INTO `django_celery_beat_periodictask` VALUES ('3', 'maincheck', 'system.tasks.main_check', '[]', '{}', null, null, null, null, '1', now(), '0', now(), '', null, '1', null, '0', null, null, '{}', null);
+INSERT INTO `django_celery_beat_intervalschedule` VALUES ('1', '1', 'minutes');
+
+INSERT INTO `django_celery_beat_intervalschedule` VALUES ('2', '10', 'minutes');
+
+INSERT INTO `django_celery_beat_intervalschedule` VALUES ('3', '30', 'minutes');
+
+INSERT INTO `django_celery_beat_periodictask` VALUES ('3', 'maincheck', 'system.tasks.main_check', '[]', '{}', null, null, null, null, '1', now(), '0', now(), '', null, '1', null, '0', null, null, '{}', null);
 
