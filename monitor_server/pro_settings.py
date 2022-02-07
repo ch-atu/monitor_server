@@ -221,11 +221,11 @@ DISPLAY_PER_PAGE = 15
 
 # # celery 4
 # 结果存储地址
-CELERY_RESULT_BACKEND = 'redis://172.16.0.11:6379/1'
+CELERY_RESULT_BACKEND = 'redis://:password@172.16.0.11:6379/1'
 # CELERY_RESULT_BACKEND = 'django-db'
 # Broker地址
 # todo 官网：BROKER_URL
-CELERY_BROKER_URL = 'redis://172.16.0.11:6379/2'
+CELERY_BROKER_URL = 'redis://:password@172.16.0.11:6379/2'
 # 默认调度程序，与django-celery-beat扩展一起使用
 # todo 官网：CELERYBEAT_SCHEDULER
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
