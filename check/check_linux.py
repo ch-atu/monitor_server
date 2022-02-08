@@ -8,7 +8,7 @@ import timeout_decorator
 from datetime import datetime
 
 
-@timeout_decorator.timeout(30)
+# @timeout_decorator.timeout(30)
 def check_linux(tags, linux_params):
     print('check_linux开始执行！')
     check_time = datetime.now()

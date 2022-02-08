@@ -11,7 +11,7 @@ import timeout_decorator
 from datetime import datetime
 
 
-@timeout_decorator.timeout(30)
+# @timeout_decorator.timeout(30)
 def check_mysql(tags, mysql_params):
     print('check_mysql开始执行！')
     check_time = datetime.now()

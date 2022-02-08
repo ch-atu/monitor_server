@@ -9,7 +9,7 @@ import time
 import timeout_decorator
 
 
-@timeout_decorator.timeout(60)
+# @timeout_decorator.timeout(60)
 def check_redis(tags, redis_params):
     print('check_redis开始执行！')
     check_time = now()
