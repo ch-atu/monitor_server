@@ -119,5 +119,5 @@ if __name__ == '__main__':
         'username': 'ASUS',
         'password': 'laizf1213'
     }
-    check_windows(tag, params)
+    # check_windows(tag, params)
 
