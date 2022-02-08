@@ -53,7 +53,7 @@ def check_windows(windows_tag, windows_params):
         """
         windows_stat = {**default_windows_stat, **other_windows_stat}
         insert_sql = insert_sql_windows_stat.format(**windows_stat)
-        print('插入到windows_stat表中', insert_sql)
+        # print('插入到windows_stat表中', insert_sql)
         mysql_exec(insert_sql)
         # 1.2将windows_stat备份到windows_stat_his表中
         archive_table(windows_tag, 'windows_stat')
