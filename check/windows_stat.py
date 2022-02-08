@@ -125,12 +125,12 @@ class WindowsStat:
 
     def get_disk_info(self, session):
         disk_info = self.run_cmd(session, COMMAND['disk_info']).decode('gbk').split()
-
+        to_delete_disk_info = []
         for k, v in enumerate(disk_info):
             if v.startswith(r'\\'):
                 # print(k, v)
-                disk_info = disk_info[0:k - 1]
-                break
+                to_delete_disk_info += disk_info[k-1:k + 2]
+        disk_info = [item for item in disk_info if item not in to_delete_disk_info]
         disk_dict = {}
         for i in range(1, len(disk_info) // 3):
             # disk_dict[data[4]] =

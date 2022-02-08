@@ -28,6 +28,8 @@ class MysqlBase(object):
     def query(self,sql,conn=None):
         if not conn:
             conn = self.connection()
+            # print('重新连接后的conn的值为：', conn)
+        # print('已有conn，其值为：', conn)
         cur = conn.cursor()
         cur.execute(sql)
         return cur.fetchall()

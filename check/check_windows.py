@@ -111,13 +111,13 @@ def check_windows(windows_tag, windows_params):
 
 
 if __name__ == '__main__':
-    tag = 'test'
+    tag = '赖振发的电脑'
     params = {
-        'host': '192.168.1.6',
+        'host': '192.168.16.116',
         # 'host': '123.168.1.6',
         'port': 5985,
-        'username': 'system-user',
-        'password': '1234'
+        'username': 'ASUS',
+        'password': 'laizf1213'
     }
-    # check_windows(tag, params)
+    check_windows(tag, params)
 
