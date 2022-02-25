@@ -43,7 +43,7 @@ class WindowsStat:
         try:
             session = self.connection(windows_tag, windows_params)
             # 测试服务器连接是否正常
-            self.run_cmd(session, ' ')
+            self.run_cmd(session, 'dir')
         except Exception as e:
             print(e)
             print('windows服务器连接超时！')
