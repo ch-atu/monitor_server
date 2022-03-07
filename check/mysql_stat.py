@@ -225,7 +225,7 @@ class MySQLStat(MysqlBase):
 
 if __name__ =='__main__':
     mysql_params = {
-        'host' : '119.29.139.149',
+        'host' : '119.29.139.xx',
         'port':3306,
         'user':'root',
         'password':'1234'

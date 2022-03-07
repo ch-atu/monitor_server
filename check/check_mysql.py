@@ -93,7 +93,7 @@ def check_mysql(tags, mysql_params):
 
 # if __name__ =='__main__':
     # mysql_params = {
-    #     'host' : '119.29.139.149',
+    #     'host' : '119.29.139.xxx',
     #     'port':3306,
     #     'user':'root',
     #     'user_os':'root',

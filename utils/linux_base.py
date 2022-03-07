@@ -114,7 +114,7 @@ class LinuxBase(object):
 
 # if __name__ == '__main__':
 #     linux_params = {
-#         'hostname': '119.29.139.149',
+#         'hostname': '119.29.139.xxx',
 #         'port': 22,
 #         'username': 'ubuntu',
 #         'password': 'ch2020...'

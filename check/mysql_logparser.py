@@ -129,7 +129,7 @@ def get_mysql_alert(tags, mysql_params, linux_params):
 #         'password': '1234'
 #     }
 #     linux_params = {
-#         'hostname': '119.29.139.149',
+#         'hostname': '119.29.139.xxx',
 #         'port': 22,
 #         'username': 'ubuntu',
 #         'password': 'ch2020...'

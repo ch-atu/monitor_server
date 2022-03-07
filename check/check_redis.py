@@ -93,7 +93,7 @@ def check_redis(tags, redis_params):
 
 # if __name__ == '__main__':
 #     redis_params = {
-#         'host': '119.29.139.149',
+#         'host': '119.29.139.xxx',
 #         'port': 6378,
 #         'password': '1234',
 #         'version': '',
