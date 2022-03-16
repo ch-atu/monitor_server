@@ -1,5 +1,5 @@
 
-# DB monitor监控平台
+# monitor server监控平台
 
 ## 特性
 - **构建**: 前后端分离架构，Python+Django+restframework提供后台API，celery定制数据采集策略，Iview作为前端展示
